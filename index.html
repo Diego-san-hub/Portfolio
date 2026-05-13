@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diego Sánchez Casillas — Localization Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --surface2: #f0f2f5;
+    --border: #dde1e8;
+    --accent: #2563eb;
+    --accent2: #0ea5e9;
+    --text: #111827;
+    --text-muted: #4b5563;
+    --text-dim: #9ca3af;
+    --red: #dc2626;
+    --yellow: #d97706;
+    --green: #16a34a;
+    --blue: #2563eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 0 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .tag-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.2rem;
+  }
+
+  .meta-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .meta-chip span {
+    color: var(--accent2);
+    margin-right: 0.3rem;
+  }
+
+  .credit-banner {
+    margin-top: 1.8rem;
+    padding: 0.9rem 1.2rem;
+    background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(14,165,233,0.04));
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .credit-banner .icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .credit-banner strong { color: var(--accent); }
+
+  /* NAV */
+  nav {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 0;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(212,168,83,0.06);
+  }
+
+  /* MAIN */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 5rem;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* SECTION TITLE */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .section-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SAMPLE CARD */
+  .sample-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .card-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .card-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .card-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .badge-gold { background: rgba(37,99,235,0.08); color: var(--accent); border: 1px solid rgba(37,99,235,0.18); }
+  .badge-teal { background: rgba(14,165,233,0.08); color: var(--accent2); border: 1px solid rgba(14,165,233,0.18); }
+  .badge-dim { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.8rem 1.2rem;
+    text-align: left;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  td {
+    padding: 0.9rem 1.2rem;
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  td.source { color: var(--text-muted); font-style: italic; }
+
+  td.note {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  td .char-limit {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+
+  td .char-ok { color: var(--green); }
+  td .char-warn { color: var(--yellow); }
+
+  /* BUG REPORT */
+  .bug-report {
+    padding: 1.5rem;
+  }
+
+  .bug-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--surface2);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .bug-field label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .bug-field value {
+    font-size: 0.82rem;
+    color: var(--text);
+    display: block;
+  }
+
+  .severity-critical { color: var(--red); font-weight: 500; }
+  .severity-major { color: var(--yellow); font-weight: 500; }
+  .severity-minor { color: var(--accent2); font-weight: 500; }
+
+  .bug-section {
+    margin-bottom: 1.2rem;
+  }
+
+  .bug-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .bug-content {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .bug-content.error { border-left: 3px solid var(--red); }
+  .bug-content.correct { border-left: 3px solid var(--green); }
+  .bug-content.note { border-left: 3px solid var(--accent); font-family: 'DM Mono', monospace; font-size: 0.75rem; }
+
+  .string-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    background: rgba(212,168,83,0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* LLM EVAL */
+  .eval-block {
+    padding: 1.5rem;
+  }
+
+  .eval-prompt {
+    background: var(--surface2);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 4px 4px 0;
+    padding: 0.8rem 1rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .eval-prompt strong {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .response-block {
+    margin-bottom: 1rem;
+  }
+
+  .response-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .dot-red { background: var(--red); }
+  .dot-green { background: var(--green); }
+
+  .response-text {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-size: 0.84rem;
+    color: var(--text);
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .score-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.7rem 0.8rem;
+    text-align: center;
+  }
+
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .score-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .score-5 { color: var(--red); }
+  .score-6 { color: var(--yellow); }
+  .score-7 { color: var(--accent); }
+  .score-8 { color: var(--accent2); }
+  .score-9 { color: var(--green); }
+
+  .annotation-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .annotation-block h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .annotation-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .annotation-block li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .annotation-block li:last-child { border-bottom: none; }
+
+  .ann-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .ann-fluency { background: rgba(37,99,235,0.08); color: #2563eb; }
+  .ann-register { background: rgba(14,165,233,0.08); color: #0284c7; }
+  .ann-accuracy { background: rgba(220,38,38,0.08); color: #dc2626; }
+  .ann-cultural { background: rgba(109,40,217,0.08); color: #7c3aed; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .card-header { flex-direction: column; }
+    .card-badges { justify-content: flex-start; }
+  }
+
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.3rem;
+  }
+
+  .about-card h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+
+  .about-card p {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: var(--surface2);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="tag-line">Localization Portfolio · 2025–2026</p>
+    <h1>Diego Sánchez <em>Casillas</em></h1>
+    <p style="font-size:0.88rem; color:var(--text-muted); margin-top:0.4rem;">
+      LQA Specialist · ES-ES &amp; LATAM Spanish &nbsp;|&nbsp; Legal Translator EN–ES &nbsp;|&nbsp; AI/LLM Language Evaluator
+    </p>
+    <div class="header-meta">
+      <span class="meta-chip"><span>✉</span>diegosanchezcasillass@gmail.com</span>
+      <span class="meta-chip"><span>🔗</span>linkedin.com/in/diego-sánchez-casillas</span>
+      <span class="meta-chip"><span>📍</span>Morelia, Mexico · Remote</span>
+    </div>
+    <div class="credit-banner">
+      <span class="icon">🎮</span>
+      <div>
+        Credited in the official staff roll of <strong>Let It Die: Inferno</strong> (GungHo Online, 2025) for Spanish LQA — a distinction typically reserved for core team members, not contractors. Project completed on-site in Tokyo, Japan with Kinsha Co., Ltd.
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="show('about', this)">About</button>
+  <button class="nav-btn" onclick="show('lqa-ui', this)">LQA · UI Strings</button>
+  <button class="nav-btn" onclick="show('lqa-bug', this)">LQA · Bug Report</button>
+  <button class="nav-btn" onclick="show('lqa-dialogue', this)">LQA · Dialogue</button>
+  <button class="nav-btn" onclick="show('llm-eval', this)">LLM Evaluation</button>
+</nav>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about" class="section active">
+    <div class="section-header">
+      <h2 class="section-title">About this Portfolio</h2>
+      <span class="section-subtitle">Overview</span>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>What I do</h3>
+        <p>Linguistic Quality Assurance for games (EN→ES-ES, JP→ES-ES), AI/LLM output evaluation in Spanish (LATAM &amp; ES-ES), and legal translation (EN→ES). I work across the full localization pipeline — from string review and bug reporting to regression testing and gold master sign-off.</p>
+      </div>
+      <div class="about-card">
+        <h3>My differentiator</h3>
+        <p>One of very few LATAM-native specialists with hands-on <strong style="color:var(--text)">ES-ES</strong> (European Spanish) game localization experience. This dual-variant fluency is rare and in high demand across the European market, particularly for titles targeting both Spain and Latin America simultaneously.</p>
+      </div>
+      <div class="about-card">
+        <h3>Languages</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Spanish LATAM — Native</span>
+          <span class="skill-tag">Spanish ES-ES — Professional</span>
+          <span class="skill-tag">English — C1 Advanced (CAE)</span>
+          <span class="skill-tag">Japanese — JLPT N4</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <h3>Tools &amp; Skills</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Phrase (TMS/CAT)</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">LQA Bug Reporting</span>
+          <span class="skill-tag">Regression Testing</span>
+          <span class="skill-tag">UI/UX Testing</span>
+          <span class="skill-tag">String Review</span>
+          <span class="skill-tag">Style Guide Application</span>
+          <span class="skill-tag">LLM Annotation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-card" style="margin-bottom:1rem;">
+      <h3>What's in this portfolio</h3>
+      <p style="margin-bottom:0.8rem;">All samples are original work created for portfolio purposes. Real project materials from Kinsha Co., Ltd. are covered under NDA. Each sample is designed to reflect real-world LQA and evaluation scenarios encountered in professional game localization and AI/LLM projects.</p>
+      <div class="skills-list">
+        <span class="skill-tag">UI String LQA (EN→ES-ES)</span>
+        <span class="skill-tag">LQA Bug Report</span>
+        <span class="skill-tag">Dialogue Localization (EN→ES-ES)</span>
+        <span class="skill-tag">LLM Output Evaluation (EN→ES)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LQA UI STRINGS -->
+  <section id="lqa-ui" class="section">
+    <div class="section-header">
+      <h2 class="section-title">UI String Localization</h2>
+      <span class="section-subtitle">EN → ES-ES · Character-constrained</span>
+    </div>
+
+    <div class="sample-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Action RPG — HUD &amp; Menu Strings</div>
+          <div class="card-desc">Character-limited UI strings for an action RPG. Constraints simulate real platform requirements (console HUD, button prompts, inventory menus). European Spanish (ES-ES) target.</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-gold">ES-ES</span>
+          <span class="badge badge-teal">UI/HUD</span>
+          <span class="badge badge-dim">Char-constrained</span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>String ID</th>
+              <th>EN Source</th>
+              <th>ES-ES Translation</th>
+              <th>Limit</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="note">HUD_001</td>
+              <td class="source">Press [A] to interact</td>
+              <td>Pulsa [A] para interactuar</td>
+              <td><span class="char-ok">✓ 26/30</span></td>
+              <td class="note">«Pulsa» preferred over «Presiona» in ES-ES register.</td>
+            </tr>
+            <tr>
+              <td class="note">HUD_002</td>
+              <td class="source">Hold [B] to sprint</td>
+              <td>Mantén [B] para correr</td>
+              <td><span class="char-ok">✓ 22/25</span></td>
+              <td class="note">«Correr» chosen over «esprintar» — natural ES-ES, avoids anglicism.</td>
+            </tr>
+            <tr>
+              <td class="note">INV_003</td>
+              <td class="source">Equip</td>
+              <td>Equipar</td>
+              <td><span class="char-ok">✓ 7/10</span></td>
+              <td class="note">Standard term — consistent with style guide.</td>
+            </tr>
+            <tr>
+              <td class="note">INV_004</td>
+              <td class="source">Unequip</td>
+              <td>Desequipar</td>
+              <td><span class="char-ok">✓ 10/12</span></td>
+              <td class="note">Preferred over «retirar» for terminological consistency with INV_003.</td>
+            </tr>
+            <tr>
+              <td class="note">INV_005</td>
+              <td class="source">Item cannot be discarded</td>
+              <td>No puedes desechar este objeto</td>
+              <td><span class="char-warn">⚠ 30/28 — TRIMMED</span></td>
+              <td class="note">Original translation 32 chars. Rewritten to fit limit without omitting meaning.</td>
+            </tr>
+            <tr>
+              <td class="note">MENU_006</td>
+              <td class="source">Save &amp; Quit</td>
+              <td>Guardar y salir</td>
+              <td><span class="char-ok">✓ 15/18</span></td>
+              <td class="note">Standard — matches ES-ES platform conventions.</td>
+            </tr>
+            <tr>
+              <td class="note">MENU_007</td>
+              <td class="source">Continue without saving?</td>
+              <td>¿Continuar sin guardar?</td>
+              <td><span class="char-ok">✓ 22/30</span></td>
+              <td class="note">Opening «¿» included — mandatory punctuation in ES-ES. Often missed by LATAM translators.</td>
+            </tr>
+            <tr>
+              <td class="note">MENU_008</td>
+              <td class="source">New Game+</td>
+              <td>Nueva partida+</td>
+              <td><span class="char-ok">✓ 14/16</span></td>
+              <td class="note">«Partida» over «juego» — more natural in gaming context for ES-ES.</td>
+            </tr>
+            <tr>
+              <td class="note">NOTIF_009</td>
+              <td class="source">Achievement unlocked!</td>
+              <td>¡Logro desbloqueado!</td>
+              <td><span class="char-ok">✓ 20/24</span></td>
+              <td class="note">Opening «¡» included. «Logro» is the standard ES-ES term (vs. «trofeo» on PlayStation).</td>
+            </tr>
+            <tr>
+              <td class="note">NOTIF_010</td>
+              <td class="source">Connection lost. Reconnecting…</td>
+              <td>Conexión perdida. Reconectando…</td>
+              <td><span class="char-ok">✓ 31/35</span></td>
+              <td class="note">Ellipsis retained as a single character (…) per ES-ES typography convention.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- LQA BUG REPORT -->
+  <section id="lqa-bug" class="section">
+    <div class="section-header">
+      <h2 class="section-title">LQA Bug Reports</h2>
+      <span class="section-subtitle">Linguistic defect documentation</span>
+    </div>
+
+    <!-- Bug 1 -->
+    <div class="sample-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Bug Report #LQA-0047 — Register Error / Tone Inconsistency</div>
+          <div class="card-desc">Action RPG · ES-ES · Tutorial sequence</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-gold">ES-ES</span>
+          <span class="badge" style="background:rgba(220,38,38,0.08);color:#dc2626;border:1px solid rgba(220,38,38,0.18);">Major</span>
+        </div>
+      </div>
+      <div class="bug-report">
+        <div class="bug-meta-grid">
+          <div class="bug-field"><label>Bug ID</label><value>LQA-0047</value></div>
+          <div class="bug-field"><label>Severity</label><value class="severity-major">Major</value></div>
+          <div class="bug-field"><label>Type</label><value>Register / Tone</value></div>
+          <div class="bug-field"><label>Language</label><value>ES-ES</value></div>
+          <div class="bug-field"><label>Screen</label><value>Tutorial — Stage 1</value></div>
+          <div class="bug-field"><label>Status</label><value>Open</value></div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">String ID</div>
+          <div class="string-id">TUT_ES_0112</div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Issue</div>
+          <div class="bug-content error">
+            Character uses «tú» form throughout the game (informal address). In this string, the translation switches to «usted» (formal address), breaking consistency and the established character voice.<br><br>
+            <strong>Current (incorrect):</strong> "Señor, usted debe presionar el botón para continuar."<br>
+          </div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Expected</div>
+          <div class="bug-content correct">
+            <strong>Suggested fix:</strong> "Pulsa el botón para continuar."<br><br>
+            Removes erroneous formal address. Aligns with «tú» register used in all other tutorial strings. Also replaces «presionar» with «pulsar», consistent with ES-ES button prompt conventions established in HUD strings.
+          </div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Steps to Reproduce</div>
+          <div class="bug-content note">
+            1. Launch game → New Game<br>
+            2. Complete intro cinematic<br>
+            3. Enter Tutorial Stage 1<br>
+            4. Trigger first prompt — string TUT_ES_0112 appears in dialogue box
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bug 2 -->
+    <div class="sample-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Bug Report #LQA-0061 — Missing Punctuation / Typography</div>
+          <div class="card-desc">Action RPG · ES-ES · Inventory screen</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-gold">ES-ES</span>
+          <span class="badge" style="background:rgba(22,163,74,0.08);color:#16a34a;border:1px solid rgba(22,163,74,0.18);">Minor</span>
+        </div>
+      </div>
+      <div class="bug-report">
+        <div class="bug-meta-grid">
+          <div class="bug-field"><label>Bug ID</label><value>LQA-0061</value></div>
+          <div class="bug-field"><label>Severity</label><value class="severity-minor">Minor</value></div>
+          <div class="bug-field"><label>Type</label><value>Typography</value></div>
+          <div class="bug-field"><label>Language</label><value>ES-ES</value></div>
+          <div class="bug-field"><label>Screen</label><value>Inventory → Confirm dialog</value></div>
+          <div class="bug-field"><label>Status</label><value>Open</value></div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">String ID</div>
+          <div class="string-id">INV_CONFIRM_ES_004</div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Issue</div>
+          <div class="bug-content error">
+            Interrogative sentence missing opening inverted question mark (¿), which is mandatory in Spanish orthography per RAE guidelines. This is a recurring error pattern — LATAM translators frequently omit this mark as it is not used in LATAM informal digital writing.<br><br>
+            <strong>Current (incorrect):</strong> "Seguro que quieres desechar este objeto?"
+          </div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Expected</div>
+          <div class="bug-content correct">
+            <strong>Suggested fix:</strong> "¿Seguro que quieres desechar este objeto?"<br><br>
+            Add «¿» at the start of the string. ES-ES style guide and RAE standard both require opening punctuation. Recommend a global search for all interrogative strings missing «¿» to identify similar instances.
+          </div>
+        </div>
+        <div class="bug-section">
+          <div class="bug-section-title">Steps to Reproduce</div>
+          <div class="bug-content note">
+            1. Open Inventory<br>
+            2. Select any item → press Discard<br>
+            3. Confirmation dialog appears — string INV_CONFIRM_ES_004 visible
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LQA DIALOGUE -->
+  <section id="lqa-dialogue" class="section">
+    <div class="section-header">
+      <h2 class="section-title">Dialogue Localization</h2>
+      <span class="section-subtitle">EN → ES-ES · Character voice &amp; tone</span>
+    </div>
+
+    <div class="sample-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Ice Mage Tutorial — Fantasy RPG Dialogue</div>
+          <div class="card-desc">Tutorial dialogue for a composed, authoritative NPC character. Focus on maintaining character voice, natural ES-ES phrasing, and functional clarity for gameplay instructions.</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-gold">ES-ES</span>
+          <span class="badge badge-teal">Dialogue</span>
+          <span class="badge badge-dim">Tutorial</span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>EN Source</th>
+              <th>ES-ES Translation</th>
+              <th>Localization Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="source">So, you're finally awake. Try moving with the left stick.</td>
+              <td>Así que por fin despiertas. Intenta moverte con la palanca izquierda.</td>
+              <td class="note">Tone adapted for composed, mystical character. «Palanca» preferred over «joystick» — natural ES-ES.</td>
+            </tr>
+            <tr>
+              <td class="source">Good. Now, focus your energy and press the button to cast an ice spell.</td>
+              <td>Bien. Ahora canaliza tu energía y presiona el botón «A» para lanzar un hechizo de hielo.</td>
+              <td class="note">«Canaliza» chosen over «enfoca» — enhances magical register, fits character voice. Button label kept per platform style guide.</td>
+            </tr>
+            <tr>
+              <td class="source">Don't rush. Precision matters more than speed.</td>
+              <td>No te precipites. La precisión vale más que la velocidad.</td>
+              <td class="note">«Precipites» over «te apresures» — more refined tone appropriate for the NPC's authoritative voice.</td>
+            </tr>
+            <tr>
+              <td class="source">Freeze your enemies before they can strike.</td>
+              <td>Congela a tus enemigos antes de que puedan atacar.</td>
+              <td class="note">Natural phrasing. «A» personal pronoun included as required by ES-ES grammar for direct objects referring to people.</td>
+            </tr>
+            <tr>
+              <td class="source">You've done well. The path ahead will demand more of you.</td>
+              <td>Lo has hecho bien. El camino que te aguarda te exigirá más.</td>
+              <td class="note">«Te aguarda» chosen over «que hay por delante» — more literary register consistent with character. Maintains formal tone without using «usted».</td>
+            </tr>
+            <tr>
+              <td class="source">Remember: magic has a cost. Use it wisely.</td>
+              <td>Recuerda: la magia tiene un precio. Úsala con sabiduría.</td>
+              <td class="note">«Con sabiduría» preferred over «sabiamente» — sounds more deliberate and weighted, matching the NPC's wisdom-teacher archetype.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- LLM EVAL -->
+  <section id="llm-eval" class="section">
+    <div class="section-header">
+      <h2 class="section-title">LLM Output Evaluation</h2>
+      <span class="section-subtitle">EN → ES · Annotation &amp; quality scoring</span>
+    </div>
+
+    <div class="sample-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Evaluation Sample — Instruction-following &amp; Fluency (ES-ES)</div>
+          <div class="card-desc">Evaluating a model's Spanish output for fluency, register accuracy, cultural appropriateness, and instruction-following. Annotated with structured feedback for retraining pipelines.</div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge-gold">ES-ES</span>
+          <span class="badge badge-teal">LLM Eval</span>
+          <span class="badge badge-dim">Annotation</span>
+        </div>
+      </div>
+      <div class="eval-block">
+        <div class="eval-prompt">
+          <strong>Prompt given to model</strong>
+          Write a formal customer service response in European Spanish (ES-ES) to a user who reports that their game save file was corrupted. Apologize, explain next steps, and maintain a professional tone throughout.
+        </div>
+
+        <div class="response-block">
+          <div class="response-label" style="color:var(--red)">
+            <span class="dot dot-red"></span> Model Output (to be evaluated)
+          </div>
+          <div class="response-text">
+            Hola! Lamentamos mucho que hayas tenido este problema con tu archivo de guardado. Esto puede pasar a veces y entendemos que es frustrante. Para solucionar esto, te recomendamos que intentes restaurar desde la nube si tienes activada la sincronización. Si no funciona, contacta a nuestro equipo de soporte y ellos te ayudarán. ¡Gracias por tu paciencia!
+          </div>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="score-label">Fluency</div>
+            <div class="score-value score-7">7<span style="font-size:0.8rem;color:var(--text-dim)">/10</span></div>
+          </div>
+          <div class="score-item">
+            <div class="score-label">Register</div>
+            <div class="score-value score-5">5<span style="font-size:0.8rem;color:var(--text-dim)">/10</span></div>
+          </div>
+          <div class="score-item">
+            <div class="score-label">Accuracy</div>
+            <div class="score-value score-8">8<span style="font-size:0.8rem;color:var(--text-dim)">/10</span></div>
+          </div>
+          <div class="score-item">
+            <div class="score-label">Cultural Fit</div>
+            <div class="score-value score-6">6<span style="font-size:0.8rem;color:var(--text-dim)">/10</span></div>
+          </div>
+          <div class="score-item">
+            <div class="score-label">Instruction-following</div>
+            <div class="score-value score-6">6<span style="font-size:0.8rem;color:var(--text-dim)">/10</span></div>
+          </div>
+        </div>
+
+        <div class="annotation-block">
+          <h4>Structured Annotation — Issues Identified</h4>
+          <ul>
+            <li>
+              <span class="ann-tag ann-register">Register</span>
+              Opening «Hola!» is too informal for a formal customer service context in ES-ES. Expected: «Estimado/a usuario/a» or «Buenas tardes». Model defaults to LATAM-casual register despite explicit ES-ES formal instruction.
+            </li>
+            <li>
+              <span class="ann-tag ann-register">Register</span>
+              «Esto puede pasar a veces» is colloquial and dismissive — inappropriate register for acknowledging a customer's issue. Weakens the apology required by the prompt.
+            </li>
+            <li>
+              <span class="ann-tag ann-fluency">Fluency</span>
+              «Si no funciona, contacta a nuestro equipo» — omits the required «a» before «nuestro equipo» in some constructions; also abrupt transition. Flow is functional but not polished.
+            </li>
+            <li>
+              <span class="ann-tag ann-accuracy">Accuracy</span>
+              Response covers the core content (apology, next steps) but does not clearly structure them as required. Steps are embedded in casual prose rather than explicitly enumerated.
+            </li>
+            <li>
+              <span class="ann-tag ann-cultural">Cultural</span>
+              Closing «¡Gracias por tu paciencia!» uses «tú» — inconsistent with the formal «usted» register expected in ES-ES formal customer service. In ES-ES B2C formal communications, «usted» is standard.
+            </li>
+          </ul>
+        </div>
+
+        <div style="height:1rem;"></div>
+
+        <div class="response-block">
+          <div class="response-label" style="color:var(--green)">
+            <span class="dot dot-green"></span> Reference Output (what an ideal response looks like)
+          </div>
+          <div class="response-text">
+            Estimado/a usuario/a:<br><br>
+            Lamentamos profundamente el inconveniente ocasionado por la corrupción de su archivo de guardado. Somos conscientes de lo frustrante que puede resultar esta situación y le pedimos disculpas por las molestias.<br><br>
+            Para resolver su caso, le recomendamos seguir estos pasos:<br>
+            1. Si tiene activada la sincronización en la nube, intente restaurar su partida desde el menú de opciones.<br>
+            2. Si el problema persiste, póngase en contacto con nuestro equipo de soporte a través de [enlace/correo], indicando su nombre de usuario y la plataforma utilizada.<br><br>
+            Nuestro equipo le atenderá en el menor tiempo posible. Agradecemos su paciencia y comprensión.<br><br>
+            Un cordial saludo,<br>
+            Equipo de Atención al Cliente
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Diego Sánchez Casillas · Localization Portfolio · 2025–2026</p>
+  <p><a href="mailto:diegosanchezcasillass@gmail.com">diegosanchezcasillass@gmail.com</a></p>
+</footer>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
